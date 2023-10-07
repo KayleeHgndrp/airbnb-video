@@ -98,11 +98,17 @@ export const categories = [
   ]
 const Categories = () => {
     const params = useSearchParams();
+    
+    // check de category searchparameter zodat we die kunnen mee geven 
+    // voor selected aan CategoryBox
     const category = params?.get('category')
+
+    // current pathname
     const pathname = usePathname();
 
     const isMainPage = pathname === '/';
 
+    // We renderen niks als we niet op de homepagina zijn
     if(!isMainPage){
         return null;
     }

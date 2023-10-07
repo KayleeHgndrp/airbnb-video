@@ -23,23 +23,29 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
     let currentQuery = {};
     
     if (params) {
+      //huidige url opgehaald
       currentQuery = qs.parse(params.toString())
     }
 
+    // een query wordt aangemaakt met de huidige url en de category is label
     const updatedQuery: any = {
       ...currentQuery,
       category: label
     }
 
+    // als de category parameter in de huidige query hetzelfde is als 
+    // het label, wordt de category verwijderd
     if (params?.get('category') === label) {
       delete updatedQuery.category;
     }
 
+    //De bijgewerkte query wordt omgezet naar een URL 
     const url = qs.stringifyUrl({
       url: '/',
       query: updatedQuery
     }, { skipNull: true });
 
+    //Ten slotte wordt de router gebruikt om naar de nieuwe URL te navigeren 
     router.push(url);
   }, [label, router, params]);
 
